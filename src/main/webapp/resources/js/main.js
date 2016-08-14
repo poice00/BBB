@@ -1,0 +1,10 @@
+$(document).ready(function(){
+  $("#blog").click(function(){
+    $("#user").removeClass("active");
+    $("#blog").addClass("active");
+  });
+  $("#user").click(function(){
+	  $("#blog").removeClass("active");
+	  $("#user").addClass("active");
+  });
+})
