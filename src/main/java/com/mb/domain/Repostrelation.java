@@ -16,6 +16,7 @@ import javax.persistence.Table;
 public class Repostrelation implements java.io.Serializable {
 
 	private RepostrelationId id;
+	private String muid;//mid 的uid
 	private String content;
 	private String state;
 
@@ -60,6 +61,14 @@ public class Repostrelation implements java.io.Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getMuid() {
+		return muid;
+	}
+
+	public void setMuid(String muid) {
+		this.muid = muid;
 	}
 
 }

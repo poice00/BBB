@@ -16,6 +16,7 @@ public class Commentrelation implements java.io.Serializable {
 	private String id;
 	private String content;
 	private String mid;
+	private String muid;
 	private String uid;
 	private String state;
 
@@ -79,6 +80,14 @@ public class Commentrelation implements java.io.Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getMuid() {
+		return muid;
+	}
+
+	public void setMuid(String muid) {
+		this.muid = muid;
 	}
 
 }

@@ -22,6 +22,7 @@ public class User implements java.io.Serializable {
 	private int fansNum;
 	private int mblogNum;
 	private String mbrank;
+	private String state;
 	private String name;
 	private Set<Blog> blogs = new HashSet<Blog>();
 
@@ -108,6 +109,14 @@ public class User implements java.io.Serializable {
 
 	public void setBlogs(Set<Blog> blogs) {
 		this.blogs = blogs;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 }
