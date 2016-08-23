@@ -56,12 +56,6 @@ public class GraphMatrix2 {
               	    writer.write(m[i][j]+"	");
                 writer.newLine();
             }
-//            for (int i = 0; i < mVexs.length; i++) {
-//            	for (int j = 0; j < mVexs.length; j++)
-//            		writer.write(mMatrix[i][j]+"	");
-//            	writer.newLine();
-//            }
-   		
             writer.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
