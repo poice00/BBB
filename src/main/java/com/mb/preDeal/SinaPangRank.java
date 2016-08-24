@@ -13,16 +13,16 @@ import java.util.Set;
 public class SinaPangRank {
 	public static void main(String[] args) {
 		String []nodes = Util.getTMNodes("data/user.txt");
-		//1.
-//		String[][] edges =	Util.getTMEdges("data/repost.txt");
-//		GraphMatrix2 gm2 = new GraphMatrix2(nodes, edges);
+//		//1.
+//		String[][] edges =	Util.getTMEdges("data/comment.txt");
+//		GraphMatrix3 gm3 = new GraphMatrix3(nodes, edges);
 		//得到转
 		//2.
-//		float[][] MT = Util.readTranspose2From("E:\\SinaPR\\gm.txt",nodes.length);
-//		Util.writerTo("E:\\SinaPR\\gmT.txt",MT);
+//		float[][] MT = Util.readTranspose2From("E:\\SinaPR\\comment\\gm.txt",nodes.length);
+//		Util.writerTo("E:\\SinaPR\\comment\\gmT.txt",MT);
 		//取得矩阵A
 		//3.
-		float[][] A = Util.getAFrom("E:\\SinaPR\\gmT.txt",nodes.length);
+		float[][] A = Util.getAFrom("E:\\SinaPR\\comment\\gmT.txt",nodes.length);
 		//计算第一次的PR值
 		float []X = new float[nodes.length];
 		for (int i = 0; i < X.length; i++) {
@@ -35,10 +35,10 @@ public class SinaPangRank {
 		System.out.println("开始迭代。。。");
 		double threshold = 0.00001;
 		while(true){
-			//0.01 95次 result0
+			//0.01 95次 result
 			//0.001 114次result
-			//0.0001 134次result2
-			//0.00001 次result3
+			//0.0001 134次result
+			//0.00001 次result
 			if(condition(minus(X,AX),threshold)){
 				System.out.println("迭代了: " + a +"次");
 				System.out.println("耗时： " + (System.currentTimeMillis()-start));
@@ -48,10 +48,10 @@ public class SinaPangRank {
 				}
 				Collections.sort(aaList);
 				int k = 100;//取前K个
-				Util.writerTo("E:\\SinaPR\\result" + threshold, aaList,k);
-				for (int i = AX.length - 1; i >= AX.length-k; i--) {
-					System.out.println(aaList.get(i));
-				}
+				Util.writerTo("E:\\SinaPR\\comment\\result" + threshold, aaList,k);
+//				for (int i = AX.length - 1; i >= AX.length-k; i--) {
+//					System.out.println(aaList.get(i));
+//				}
 				return ;
 			}else{
 				X = AX ;
