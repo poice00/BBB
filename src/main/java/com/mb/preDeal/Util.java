@@ -145,7 +145,7 @@ public class Util {
         System.out.println("写入完毕。。。。");
 		
 	}
-	public static void writerTo(String path, double[][] m) {
+	public static void writerTo(String path, float[][] mT) {
 		System.out.println("写入中。。。。");
 	    File file = new File(path);
 	    FileWriter fw = null;
@@ -153,10 +153,10 @@ public class Util {
         try {
             fw = new FileWriter(file);
             writer = new BufferedWriter(fw);
-            for (int i = 0; i < m.length; i++) {
-            	System.out.println(i);
-                for (int j = 0; j < m.length; j++)
-              	    writer.write(m[i][j]+"	");
+            for (int i = 0; i < mT.length; i++) {
+//            	System.out.println(i);
+                for (int j = 0; j < mT.length; j++)
+              	    writer.write(mT[i][j]+"	");
                 writer.newLine();
             }
             writer.flush();
@@ -302,8 +302,9 @@ public class Util {
 		DecimalFormat  df=new DecimalFormat("#.######");//保留六位小数
 		return Double.parseDouble(df.format(dd));
 	}
-	public static double[][] getAFrom(String path, int len) {
-		double [][]a = new double[len][len];
+	public static float[][] getAFrom(String path, int len) {
+		System.out.println("读取中。。");
+		float [][]a = new float[len][len];
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String str= null;
@@ -311,8 +312,8 @@ public class Util {
 			while((str=br.readLine())!=null){
 				int j = 0 ;
 				for (String s : str.split("	")) {
-					double size = len ;
-					a[i][j] = 0.85*Double.parseDouble(s) + 0.15 / size ;
+					float size = len ;
+					a[i][j] = (float) (0.85*Float.parseFloat(s) + 0.15 / size) ;
 					j ++;
 				}
 				i++;
@@ -355,11 +356,11 @@ public class Util {
 		System.out.println("读取成功： " + a.length);
 		return a;
 	}
-	public static double[] calcAX(double[][] A, double[] X) {
-		double []a = new double[X.length];
+	public static float[] calcAX(float[][] A, float[] X) {
+		float []a = new float[X.length];
 		int size = X.length;
 		for (int i = 0;i<size;i++) {
-			double value = 0.0 ;
+			float value = 0.0f ;
 			for (int j = 0;j<size;j++) {
 //				if(A[i][j]==0.0)
 //					value += ((0.15 / size) * X[j]) ;
@@ -399,24 +400,25 @@ public class Util {
         System.out.println("写入完毕。。。。");
 		
 	}
-	public static double[][] readTranspose2From(String path, int len) {
-		double [][]a = new double[len][len];
+	public static float[][] readTranspose2From(String path, int len) {
+		float [][]a = new float[len][len];
+		System.out.println("读取中。。");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String str= null;
 			int i = 0 ;
 			while((str=br.readLine())!=null){
-				System.out.println(i);
+//				System.out.println(i);
 				int j = 0 ;
-				double value = 0.0 ;
+				float value = 0.0f ;
 				for (String s : str.split("	")) {
-					value += Double.parseDouble(s);
+					value += Float.parseFloat(s);
 				}
 				for (String s : str.split("	")) {
 					if(value == 0.0){
-						a[j][i] = (Double.parseDouble(s));
+						a[j][i] = (Float.parseFloat(s));
 					}else
-						a[j][i] = (Double.parseDouble(s)) / value;
+						a[j][i] = (Float.parseFloat(s)) / value;
 					j ++;
 				}
 				i++;
@@ -426,7 +428,7 @@ public class Util {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("读取成功： " + a.length);
+		System.out.println("处理完毕： " + a.length);
 		return a;
 	}
 	public static double[][] readTranspose2From(String path, int len, double[] x) {

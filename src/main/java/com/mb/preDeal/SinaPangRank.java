@@ -12,61 +12,62 @@ import java.util.Set;
  */
 public class SinaPangRank {
 	public static void main(String[] args) {
+		String []nodes = Util.getTMNodes("data/user.txt");
 		//1.
-		String []nodes = Util.getTMNodes("data/usert.txt");
-		String[][] edges =	Util.getTMEdges("data/repostt.txt");
-		GraphMatrix2 gm2 = new GraphMatrix2(nodes, edges);
+//		String[][] edges =	Util.getTMEdges("data/repost.txt");
+//		GraphMatrix2 gm2 = new GraphMatrix2(nodes, edges);
 		//得到转
 		//2.
-		double[][] MT = Util.readTranspose2From("C:\\Users\\Administrator\\Desktop\\PR\\gm.txt",nodes.length);
-		Util.writerTo("C:\\Users\\Administrator\\Desktop\\PR\\gmT.txt",MT);
+//		float[][] MT = Util.readTranspose2From("E:\\SinaPR\\gm.txt",nodes.length);
+//		Util.writerTo("E:\\SinaPR\\gmT.txt",MT);
 		//取得矩阵A
 		//3.
-//		double[][] A = Util.getAFrom("C:\\Users\\Administrator\\Desktop\\PR\\gmT.txt",nodes.length);
-//		//计算第一次的PR值
-//		double []X = new double[nodes.length];
-//		for (int i = 0; i < X.length; i++) {
-//			X[i] = 1.0;
-//		}
-//		//AX是下一次的PR值
-//		double[] AX = Util.calcAX(A,X);
-//		int a = 0 ;
-//		long start = System.currentTimeMillis();
-//		while(true){
-//			//0.01 62次
-//			//0.001 80次
-//			//0.0001 98次
-//			//0.00001 116次
-//			//参考 第四次文献 6.微博中影响力的研究_李翔.caj
-//			if(condition(minus(X,AX),0.001)){
-//				System.out.println("迭代了: " + a +"次");
-//				System.out.println("耗时： " + (System.currentTimeMillis()-start));
-//				List<AA> aaList = new ArrayList<AA>();
-//				for (int i = 0; i < AX.length; i++) {
-//					aaList.add(new AA(nodes[i], AX[i]));
-//				}
-//				Collections.sort(aaList);
-//				int k = 3;//取前K个
-//				Util.writerTo("C:\\Users\\Administrator\\Desktop\\PR\\result", aaList,k);
-//				for (int i = AX.length - 1; i >= AX.length-k; i--) {
-//					System.out.println(aaList.get(i));
-//				}
-//				return ;
-//			}else{
-//				X = AX ;
-//				AX = Util.calcAX(A,X);
-//				System.out.println("==============");
-//				a++;
-//			}
-//		}
+		float[][] A = Util.getAFrom("E:\\SinaPR\\gmT.txt",nodes.length);
+		//计算第一次的PR值
+		float []X = new float[nodes.length];
+		for (int i = 0; i < X.length; i++) {
+			X[i] = 1.0f;
+		}
+		//AX是下一次的PR值
+		float[] AX = Util.calcAX(A,X);
+		int a = 0 ;
+		long start = System.currentTimeMillis();
+		System.out.println("开始迭代。。。");
+		double threshold = 0.00001;
+		while(true){
+			//0.01 95次 result0
+			//0.001 114次result
+			//0.0001 134次result2
+			//0.00001 次result3
+			if(condition(minus(X,AX),threshold)){
+				System.out.println("迭代了: " + a +"次");
+				System.out.println("耗时： " + (System.currentTimeMillis()-start));
+				List<AA> aaList = new ArrayList<AA>();
+				for (int i = 0; i < AX.length; i++) {
+					aaList.add(new AA(nodes[i], AX[i]));
+				}
+				Collections.sort(aaList);
+				int k = 100;//取前K个
+				Util.writerTo("E:\\SinaPR\\result" + threshold, aaList,k);
+				for (int i = AX.length - 1; i >= AX.length-k; i--) {
+					System.out.println(aaList.get(i));
+				}
+				return ;
+			}else{
+				X = AX ;
+				AX = Util.calcAX(A,X);
+				System.out.println("==============");
+				a++;
+			}
+		}
     }
-	private static double[] minus(double[] aX, double[] x) {
+	private static float[] minus(float[] aX, float[] x) {
 		for (int i = 0; i < x.length; i++) {
 			aX[i] = Math.abs(aX[i] -x[i]);
 		}
 		return aX;
 	}
-	private static boolean condition(double[] o, double condition) {
+	private static boolean condition(float[] o, double condition) {
 		boolean flag[] =new boolean[o.length];
 		for (int i = 0; i < o.length; i++) {
 			if(o[i]<condition) flag[i] = true ;

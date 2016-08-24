@@ -40,7 +40,7 @@ public class GraphMatrix2 {
             else
             	mMatrix[p1][p2] = 1;
         }
-		writerTo("C:\\Users\\Administrator\\Desktop\\PR\\gm.txt", mMatrix);
+		writerTo("E:\\SinaPR\\gm.txt", mMatrix);
 		System.out.println("邻接矩阵构建完毕！");
     }
 	private void writerTo(String path, int[][] m) {
