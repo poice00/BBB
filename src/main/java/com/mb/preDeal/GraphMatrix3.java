@@ -9,15 +9,14 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
-
+/**
+ * 为了方便 直接copy comment
+ * @author ssy
+ *
+ */
 public class GraphMatrix3 {
 	private String[] mVexs;       // 顶点集合
 	private int[][] mMatrix;    // 邻接矩阵
-    /**
-     * 创建图(用已提供的矩阵)
-     * @param nodes	顶点数组
-     * @param edges	边数组
-     */
     public GraphMatrix3(String[] nodes, String[][] edges) {
     	System.out.println("邻接矩阵构建中。。。");
         // 初始化"顶点数"和"边数"

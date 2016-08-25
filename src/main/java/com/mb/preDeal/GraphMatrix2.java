@@ -9,7 +9,11 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
-
+/**
+ * 为了方便 直接copy repost
+ * @author ssy
+ *
+ */
 public class GraphMatrix2 {
 	private String[] mVexs;       // 顶点集合
 	private int[][] mMatrix;    // 邻接矩阵

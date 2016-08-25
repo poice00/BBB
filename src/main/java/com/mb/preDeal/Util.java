@@ -400,6 +400,49 @@ public class Util {
         System.out.println("写入完毕。。。。");
 		
 	}
+	/**
+	 * 原始的PR矩阵
+	 * @param path
+	 * @param len
+	 * @return
+	 */
+	public static float[][] readTranspose1From(String path, int len) {
+		float [][]a = new float[len][len];
+		System.out.println("读取中。。");
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String str= null;
+			int i = 0 ;
+			while((str=br.readLine())!=null){
+//				System.out.println(i);
+				int j = 0 ;
+				int count = 0 ;
+				for (String s : str.split("	")) {
+					if(Integer.parseInt(s)!=0) count ++;
+				}
+				for (String s : str.split("	")) {
+					if(count == 0.0){
+						a[j][i] = (Float.parseFloat(s));
+					}else
+						a[j][i] = 1 / count;
+					j ++;
+				}
+				i++;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("处理完毕： " + a.length);
+		return a;
+	}
+	/**
+	 * 改进的的PR矩阵
+	 * @param path
+	 * @param len
+	 * @return
+	 */
 	public static float[][] readTranspose2From(String path, int len) {
 		float [][]a = new float[len][len];
 		System.out.println("读取中。。");

@@ -6,23 +6,25 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 /**
- * 新浪微博 转发和评论网络改进的PR
+ * 新浪微博 转发和评论网络未改进的PR
  * @author ssy
  *
  */
-public class SinaPangRank {
+public class SinaOriginalPangRank {
 	public static void main(String[] args) {
 		String []nodes = Util.getTMNodes("data/user.txt");
-//		//1.
-//		String[][] edges =	Util.getTMEdges("data/comment.txt");
-//		GraphMatrix3 gm3 = new GraphMatrix3(nodes, edges);
+		//1.
+//		String[][] edges =	Util.getTMEdges("data/repost.txt");
+//		GraphMatrix gm = new GraphMatrix(nodes, edges);
 		//得到转
 		//2.
 //		float[][] MT = Util.readTranspose2From("E:\\SinaPR\\comment\\gm.txt",nodes.length);
 //		Util.writerTo("E:\\SinaPR\\comment\\gmT.txt",MT);
+//		float[][] MT = Util.readTranspose2From("E:\\SinaPR\\ori_gm.txt",nodes.length);
+//		Util.writerTo("E:\\SinaPR\\ori_gmT.txt",MT);
 		//取得矩阵A
 		//3.
-		float[][] A = Util.getAFrom("E:\\SinaPR\\gmT.txt",nodes.length);
+		float[][] A = Util.getAFrom("E:\\SinaPR\\ori_gmT.txt",nodes.length);
 		//计算第一次的PR值
 		float []X = new float[nodes.length];
 		for (int i = 0; i < X.length; i++) {
@@ -33,7 +35,7 @@ public class SinaPangRank {
 		int a = 0 ;
 		long start = System.currentTimeMillis();
 		System.out.println("开始迭代。。。");
-		double threshold = 0.1;
+		double threshold = 0.00001;
 		while(true){
 			//0.01 
 			//0.001 
@@ -48,7 +50,7 @@ public class SinaPangRank {
 				}
 				Collections.sort(aaList);
 				int k = 100;//取前K个
-				Util.writerTo("E:\\SinaPR\\comment\\result" + threshold, aaList,k);
+				Util.writerTo("E:\\SinaPR\\ori_result" + threshold, aaList,k);
 //				for (int i = AX.length - 1; i >= AX.length-k; i--) {
 //					System.out.println(aaList.get(i));
 //				}
