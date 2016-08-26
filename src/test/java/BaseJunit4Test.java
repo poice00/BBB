@@ -16,6 +16,7 @@ import com.mb.domain.Repostrelation;
 import com.mb.domain.User;
 import com.mb.service.BlogService;
 import com.mb.service.CommentrelationService;
+import com.mb.service.InfluenceService;
 import com.mb.service.RepostrelationService;
 import com.mb.service.UserService;
 //import sun.net.www.protocol.gopher.GopherClient;
@@ -40,6 +41,8 @@ public class BaseJunit4Test {
 	private CommentrelationService commentrelationService;
 	@Resource
 	private BlogService blogService;
+	@Resource
+	private InfluenceService influenceService;
 	
 	@Test
 	public void testSessionFactory() throws Exception {
@@ -64,5 +67,9 @@ public class BaseJunit4Test {
 			commentrelation.setMuid(muid);
 			commentrelationService.update(commentrelation);
 		}
+	}
+	@Test
+	public void testInf() throws Exception{
+		String path = "/result/";
 	}
 }

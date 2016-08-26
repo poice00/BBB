@@ -299,7 +299,7 @@ public class Util {
 		return a;
 	}
 	public static double change(double dd) {
-		DecimalFormat  df=new DecimalFormat("#.######");//保留六位小数
+		DecimalFormat  df=new DecimalFormat("#.###############");//保留15位小数
 		return Double.parseDouble(df.format(dd));
 	}
 	public static float[][] getAFrom(String path, int len) {
