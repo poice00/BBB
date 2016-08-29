@@ -298,9 +298,9 @@ public class Util {
 		System.out.println("读取成功： " + a.length);
 		return a;
 	}
-	public static double change(double dd) {
+	public static String change(double dd) {
 		DecimalFormat  df=new DecimalFormat("#.###############");//保留15位小数
-		return Double.parseDouble(df.format(dd));
+		return df.format(dd).toString();
 	}
 	public static float[][] getAFrom(String path, int len) {
 		System.out.println("读取中。。");

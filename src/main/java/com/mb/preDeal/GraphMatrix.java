@@ -35,7 +35,7 @@ public class GraphMatrix {
             // 读取边的起始顶点和结束顶点
             int p1 = getPosition(edges[i][0]);
             int p2 = getPosition(edges[i][1]);
-            mMatrix[p1][p2] = 1;
+            if(mMatrix[p1][p2] != 1) mMatrix[p1][p2] = 1;
         }
 		writerTo("E:\\SinaPR\\ori_gm.txt", mMatrix);
 		System.out.println("邻接矩阵构建完毕！");
