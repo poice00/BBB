@@ -46,23 +46,23 @@ public class Test {
 //		1.0034776209977281E-7
 //		System.out.println(change(1.0748599521548385E-7));
 		//sina #西安身边事# sinaPageRnak
-		/*String path = "result/repost/result0.001";
-		String path2 = "result/comment/result0.001";
+		String path = "result/repost/result0.0001";
+		String path2 = "result/comment/result0.0001";
 		Map<String, String> maps1 = readData(path);
 //		print(maps1);
 		Map<String, String> maps2 = readData(path2);
 		Map<String, String> maps = merge(maps1,maps2);
 //		print(maps);
-		writerTo("result/result0.001",maps);*/
+		writerTo("result/result0.0001",maps);
 		//sina #西安身边事# 原始的PageRank
-		String path = "compare/repost/ori_result0.001";
-		String path2 = "compare/comment/ori_result0.001";
+		/*String path = "compare/repost/ori_result0.0001";
+		String path2 = "compare/comment/ori_result0.0001";
 		Map<String, String> maps1 = readData(path);
 //		print(maps1);
 		Map<String, String> maps2 = readData(path2);
 		Map<String, String> maps = merge(maps1,maps2);
 //		print(maps);
-		writerTo("result/ori_result0.001",maps);
+		writerTo("result/ori_result0.0001",maps);*/
 	}
 
 	private static void writerTo(String path, Map<String, String> maps) {
