@@ -8,7 +8,9 @@ import java.util.Set;
 /**
  * 新浪微博 转发和评论网络未改进的PR
  * @author ssy
- *
+ * PageRank：
+ * 被越多优质的网页所指向的，它是优质网页的概率就越大。
+ * 被越多影响力大的节点所指向，它的影响力大的概率就越大。
  */
 public class SinaOriginalPangRank {
 	public static void main(String[] args) {
