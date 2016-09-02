@@ -39,11 +39,11 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview</a></li>
-            <li><a target="ifrm" href="<%=request.getContextPath()%>/home/index">数据</a></li>
+            <li><a target="ifrm" href="<%=request.getContextPath()%>/blog/list">数据</a></li>
              <li><a target="ifrm" href="<%=request.getContextPath()%>/home/index">Comics</a></li>
              <li><a target="ifrm" href="<%=request.getContextPath()%>/home/index">Reports</a></li>
-             <li><a target="ifrm" href="<%=request.getContextPath()%>/home/index">Analytics</a></li>
-             <li><a target="ifrm" href="<%=request.getContextPath()%>/a.jsp">Export</a></li>
+             <li><a target="ifrm" href="<%=request.getContextPath()%>/result/list/pr">影响力度量结果</a></li>
+             <li><a target="ifrm" href="<%=request.getContextPath()%>/a.jsp">影响力最大化</a></li>
           </ul>
         </div>
         <!-- DashBoard -->

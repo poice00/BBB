@@ -35,12 +35,9 @@ public class CenterDistA {
 		String path3 = "data/user.txt";
 		List<String> userList = readData(path3);
 		Map<String, String> maps1 = readData(path,userList);
-//		print(maps1);
-//		Map<String, Integer> maps2 = readData(path2);
-//		print(maps2);
-//		Map<String, Integer> maps = merge(maps1,maps2);
-//		print(maps);
-		writerTo("result/centerDist_result",maps1);
+		Map<String, String> maps2 = readData(path2,userList);
+		Map<String, String> maps = merge(maps1,maps2);
+		writerTo("result/centerDist_result2",maps);
 	}
 	public static List<String> readData(String path) {
 		List<String> dataList = new ArrayList<>();
@@ -142,13 +139,13 @@ public class CenterDistA {
 		}
 		return nodecount;
 	}
-	private static Map<String, Integer> merge(Map<String, Integer> maps1, Map<String, Integer> maps2) {
-		Map<String, Integer> resultMaps = new LinkedHashMap<>();
-		Map<String, Integer> resultMaps2 = new LinkedHashMap<>();
+	private static Map<String, String> merge(Map<String, String> maps1, Map<String, String> maps2) {
+		Map<String, String> resultMaps = new LinkedHashMap<>();
+		Map<String, String> resultMaps2 = new LinkedHashMap<>();
 		for (String key : maps1.keySet()) {
 			if(maps2.get(key)!=null){
-				int value = (int) (0.7*maps1.get(key) + 0.3*maps2.get(key));
-				resultMaps.put(key, value);
+				double value = (0.7*Double.parseDouble(maps1.get(key)) + 0.03*Double.parseDouble(maps2.get(key)));
+				resultMaps.put(key, Util.change(value));
 			}else 
 				resultMaps.put(key, maps1.get(key));
 		}
@@ -159,12 +156,12 @@ public class CenterDistA {
 		}
 		System.out.println("resultMaps结果空间： " + resultMaps.size());
 		//这里将map.entrySet()转换成list
-        List<Map.Entry<String,Integer>> list = new ArrayList<Map.Entry<String,Integer>>(resultMaps.entrySet());
+        List<Map.Entry<String,String>> list = new ArrayList<Map.Entry<String,String>>(resultMaps.entrySet());
         //然后通过比较器来实现排序
-        Collections.sort(list,new Comparator<Map.Entry<String,Integer>>() {
+        Collections.sort(list,new Comparator<Map.Entry<String,String>>() {
             //升序排序
-            public int compare(Entry<String, Integer> o1,
-                    Entry<String, Integer> o2) {
+            public int compare(Entry<String, String> o1,
+                    Entry<String, String> o2) {
                 return o1.getValue().compareTo(o2.getValue());
             }
         });
