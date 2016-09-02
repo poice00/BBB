@@ -44,7 +44,6 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 		  	</c:forEach>
 		 </table>
 	 </form>
-	 <%@ include file="/WEB-INF/jsps/public/pageView.jsp"%>
 	 
 	
 	 </div>
