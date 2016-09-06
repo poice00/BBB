@@ -1,0 +1,12 @@
+input: S= { } ,G=（V，E）,k, R=20000
+output:导致影响力最大化的集合S
+for i=0 to k do //种子节点数k
+  for each w int V
+    for j=0 to R 
+      计算影响力增量o(SUw)-o(S) 并叠加
+    end for
+    计算增量平均值
+  end for
+  选取导致增量最大的节点u，加入S
+end for 
+//时间复杂度：O(knRm)
