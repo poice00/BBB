@@ -91,7 +91,8 @@ public class Utils {
 			String str= null;
 			int i = 0 ;
 			while((str=br.readLine())!=null){
-				lists.add(str);
+				double pro = getInitPro();
+				lists.add(str + "\t" + pro);
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -108,7 +109,8 @@ public class Utils {
 			String str= null;
 			int i = 0 ;
 			while((str=br.readLine())!=null){
-				sets.add(str);
+				sets.add(str.split("\t")[0]);
+				sets.add(str.split("\t")[1]);
 			}
 			
 		} catch (FileNotFoundException e) {

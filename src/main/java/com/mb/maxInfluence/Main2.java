@@ -18,7 +18,8 @@ public class Main2 {
 	public static void main(String[] args) {
 		List<String> datalist = Utils.getListDatas("D:/eclipse_workspace/BBB/data/Wiki-Vote.txt");//7115节点 103689
 		Set<String> nodeSet = Utils.getListNodes("D:/eclipse_workspace/BBB/data/Wiki-Vote.txt");
-		int k = 30 ; //种子节点k
+		System.out.println(nodeSet.size());
+		int k = 5 ; //种子节点k
 		Set<String> seedsSet = new TreeSet<String>();
 		Set<String> Nodes = null;
 		for (int i = 0; i < k; i++) {
