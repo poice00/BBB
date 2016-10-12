@@ -33,7 +33,7 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 		    	<td>关注数</td>
 		    	<td>粉丝数</td>
 		    	<td>博客数</td>
-		    	<td>排名值</td>
+		    	<!-- <td>排名值</td> -->
 		    </tr>
 		    <c:forEach items="${pageBean.recordList}" var="item">
 		    	<tr align="center">
@@ -41,7 +41,7 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 			    	<td>${item.attnum }</td>
 			    	<td>${item.fansNum }</td>
 			    	<td>${item.mblogNum }</td>
-			    	<td>${item.mbrank }</td>
+			    	<%-- <td>${item.mbrank }</td> --%>
 		    	</tr>
 		  	</c:forEach>
 		 </table>
