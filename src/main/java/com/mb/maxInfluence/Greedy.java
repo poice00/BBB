@@ -22,8 +22,8 @@ import java.util.logging.SimpleFormatter;
  */
 public class Greedy {
 	public static void main(String[] args) {
-		List<String> datalist = Utils.getListDatas("data/Wiki-Vote.txt");//7115节点 103689
-		Set<String> nodeSet = Utils.getListNodes("data/Wiki-Vote.txt");
+		List<String> datalist = Utils.getListDatas("data/repost.txt");//7115节点 103689
+		Set<String> nodeSet = Utils.getListNodes("data/repost.txt");
 		int k = 30 ; //种子节点k
 		Set<String> seedsSet = new TreeSet<String>();//种子节点的集合
 		Set<String> Nodes = null;//
@@ -74,7 +74,7 @@ public class Greedy {
 			double max = 0.0;
 			String maxNode = null;
 			for (String data : datalist) {
-				if(data.split("\t")[1].equals(node) && !activeNode.contains(node)){
+				if(data.split("\t")[1].equals(node) && !activeNode.contains(node)&&!data.split("\t")[0].equals(node) ){
 					if(Double.parseDouble(data.split("\t")[2]) >= max){
 						max = Double.parseDouble(data.split("\t")[2]);
 						maxNode =data ;
@@ -100,7 +100,7 @@ public class Greedy {
 			double max = 0.0;
 			String maxNode = null;
 			for (String data : datalist) {
-				if(data.split("\t")[1].equals(node) && !activeNode.contains(node)){
+				if(data.split("\t")[1].equals(node) && !activeNode.contains(node)&&!data.split("\t")[0].equals(node)){
 					if(Double.parseDouble(data.split("\t")[2]) >= max){
 						max = Double.parseDouble(data.split("\t")[2]);
 						maxNode =data ;
