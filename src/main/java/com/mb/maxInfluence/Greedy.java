@@ -20,11 +20,12 @@ import java.util.logging.SimpleFormatter;
 其邻居节点进行激活。如果节点变为激活节点那么将节点加入到 中。
 	4.重复上述过程直到没有新的未激活节点变为激活节点，传播过程结束。
  */
+@Deprecated
 public class Greedy {
 	public static void main(String[] args) {
 		List<String> datalist = Utils.getListDatas("data/repost.txt");//7115节点 103689
 		Set<String> nodeSet = Utils.getListNodes("data/repost.txt");
-		int k = 30 ; //种子节点k
+		int k = 50 ; //种子节点k
 		Set<String> seedsSet = new TreeSet<String>();//种子节点的集合
 		Set<String> Nodes = null;//
 		long begin = System.currentTimeMillis();
@@ -54,14 +55,16 @@ public class Greedy {
 			}
 			seedsSet.add(nodeFinal);
 			System.out.println("nodeFinal: " + nodeFinal + " 节点集合大小： " + Nodes.size());
+//			System.out.println("未激活的节点集合大小： " + Nodes.size());
 			long end = System.currentTimeMillis();
 			System.out.println("======节点选择完毕======,耗时：" + (end- start) + "ms");
+			break;
 		}
 		long over = System.currentTimeMillis();
-		System.out.println("原始节点大小： " + nodeSet.size());
+//		System.out.println("原始节点大小： " + nodeSet.size());
 		System.out.println("最终选取的节点是： " + seedsSet.toString());
 		System.out.println("已激活的节点大小： " + Nodes.size());//115, 152, 153, 174, 84 //13, 169, 228, 287, 82
-		System.out.println("已激活的节点： " + Nodes);
+//		System.out.println("已激活的节点： " + Nodes);
 		System.out.println("======程序运行完毕======,总耗时：" + (over- begin) + "ms");
 		
 	}

@@ -9,10 +9,8 @@ import java.util.TreeSet;
 import java.util.logging.SimpleFormatter;
 /**
  * 贪心算法与启发式算法的结合
- * 两阶段的影响力最大化算法
  */
-@Deprecated
-public class Greedy2 {
+public class TwoStageAlg {
 	public static void main(String[] args) {
 		List<String> datalist = Utils.getListDatas("data/repost.txt");//7115节点 103689
 		Set<String> nodeSet = Utils.getListNodes("data/repost.txt");
@@ -48,11 +46,12 @@ public class Greedy2 {
 			Set<String> nodes = getActiveNodes(datalist, seed);//初始激活的集合
 			Nodes.addAll(nodes);
 		}
+		nodeSet.removeAll(Nodes);
 		System.out.println("初始激活节点： " + Nodes.size());
 		long begin = System.currentTimeMillis();
-		for (int i = 0; i < k-seedsSet.size(); i++) {
+		for (int i = 0; i < k-25; i++) {
 			long start = System.currentTimeMillis();
-			System.out.print("第" + (i+1) +"次节点选择: ");
+			System.out.print("第" + (i+1) +"次节点选择: " + "当前节点集合的大小： " + nodeSet.size());
 			String nodeFinal = null;
 			int maxSize = 0;
 			for (String node : nodeSet) {//遍历每个节点,加入中自己和，计算边际影响值
@@ -66,6 +65,7 @@ public class Greedy2 {
 				}
 			}
 			seedsSet.add(nodeFinal);
+			nodeSet.removeAll(Nodes);
 			System.out.println("nodeFinal: " + nodeFinal + " 节点集合大小： " + Nodes.size());
 			long end = System.currentTimeMillis();
 			System.out.println("======节点选择完毕======,耗时：" + (end- start) + "ms");
