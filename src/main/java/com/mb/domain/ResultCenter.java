@@ -10,6 +10,7 @@ public class ResultCenter {
 	private String id;
 	private String name;
 	private String value;
+	private User user;
 	@Id
 	public String getId() {
 		return id;
@@ -28,6 +29,14 @@ public class ResultCenter {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@ManyToOne
+	@JoinColumn(name = "uid",unique=true)
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

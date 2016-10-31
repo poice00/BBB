@@ -34,12 +34,18 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 		    	<td>用户id</td>
 		    	<td>用户昵称</td>
 		    	<td>value</td>
+		    	<td width="50px">关注数</td>
+		    	<td width="50px">粉丝数</td>
+		    	<td width="100px">博客数</td>
 		    </tr>
 		    <c:forEach items="${resultList}" var="item">
 		    	<tr align="center">
 			    	<td>${item.id }</td>
 			    	<td><a href="/BBB/user/show?id=${item.id }">${item.name }</a></td>
 			    	<td>${item.value }</td>
+			    	<td>${item.user.attnum }</td>
+	    			<td>${item.user.fansNum }</td>
+	    			<td>${item.user.mblogNum }</td>
 		    	</tr>
 		  	</c:forEach>
 		 </table>
