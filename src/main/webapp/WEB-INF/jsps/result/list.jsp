@@ -31,13 +31,15 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<form id="page" action="" >
 		<table class="table table-hover">
 			<tr align="center">
-				<td>排名</td>
+				<td width="100px">排名</td>
 		    	<td>用户id</td>
 		    	<td>用户昵称</td>
 		    	<td>value</td>
-		    	<td width="50px">关注数</td>
-		    	<td width="50px">粉丝数</td>
-		    	<td width="100px">博客数</td>
+		    	<td width="100px">被转发数</td>
+		    	<td>被评论数</td>
+		    	<td>关注数</td>
+		    	<td>粉丝数</td>
+		    	<td>博客数</td>
 		    </tr>
 		    <c:forEach items="${resultList}" var="item" varStatus="stauts">
 		    	<tr align="center">
@@ -45,6 +47,8 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 			    	<td>${item.id }</td>
 			    	<td><a href="/BBB/user/show?id=${item.id }">${item.name }</a></td>
 			    	<td>${item.value }</td>
+			    	<td>${item.user.repost }</td>
+			    	<td>${item.user.comment }</td>
 			    	<td>${item.user.attnum }</td>
 	    			<td>${item.user.fansNum }</td>
 	    			<td>${item.user.mblogNum }</td>

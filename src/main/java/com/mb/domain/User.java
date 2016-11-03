@@ -22,6 +22,8 @@ public class User implements java.io.Serializable {
 	private int attnum;
 	private int fansNum;
 	private int mblogNum;
+	private int repost;
+	private int comment;
 	private String mbrank;
 	private String state;
 	private String name;
@@ -154,6 +156,22 @@ public class User implements java.io.Serializable {
 
 	public void setResultPR(Set<ResultPR> resultPR) {
 		ResultPR = resultPR;
+	}
+
+	public int getRepost() {
+		return repost;
+	}
+
+	public void setRepost(int repost) {
+		this.repost = repost;
+	}
+
+	public int getComment() {
+		return comment;
+	}
+
+	public void setComment(int comment) {
+		this.comment = comment;
 	}
 
 }
