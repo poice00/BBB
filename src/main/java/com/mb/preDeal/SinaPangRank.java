@@ -33,7 +33,7 @@ public class SinaPangRank {
 		int a = 0 ;
 		long start = System.currentTimeMillis();
 		System.out.println("开始迭代。。。");
-		double threshold = 0.1;
+		double threshold = 1;
 		while(true){
 			//0.01 
 			//0.001 
@@ -48,7 +48,7 @@ public class SinaPangRank {
 				}
 				Collections.sort(aaList);
 				int k = 100;//取前K个
-				Util.writerTo("E:\\SinaPR\\comment\\result" + threshold, aaList,k);
+//				Util.writerTo("E:\\SinaPR\\comment\\result" + threshold, aaList,k);
 //				for (int i = AX.length - 1; i >= AX.length-k; i--) {
 //					System.out.println(aaList.get(i));
 //				}
@@ -62,9 +62,13 @@ public class SinaPangRank {
 		}
     }
 	private static float[] minus(float[] aX, float[] x) {
+		float max = Float.MIN_VALUE ;
 		for (int i = 0; i < x.length; i++) {
 			aX[i] = Math.abs(aX[i] -x[i]);
+			if(aX[i]>max)
+				max = aX[i];
 		}
+		System.out.println("min: " + max);
 		return aX;
 	}
 	private static boolean condition(float[] o, double condition) {
