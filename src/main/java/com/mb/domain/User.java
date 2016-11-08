@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,11 +22,16 @@ public class User implements java.io.Serializable {
 	private int attnum;
 	private int fansNum;
 	private int mblogNum;
+	private int repost;
+	private int comment;
 	private String mbrank;
 	private String state;
 	private String name;
 	private Set<Blog> blogs = new HashSet<Blog>();
-
+	private Set<ResultMyPR> resultMyPRs=new HashSet<ResultMyPR>();
+	private Set<ResultCenter> ResultCenter=new HashSet<ResultCenter>();
+	private Set<ResultMax> ResultMax=new HashSet<ResultMax>();
+	private Set<ResultPR> ResultPR=new HashSet<ResultPR>();
 	public User() {
 	}
 
@@ -117,6 +123,55 @@ public class User implements java.io.Serializable {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<ResultMyPR> getResultMyPRs() {
+		return resultMyPRs;
+	}
+
+	public void setResultMyPRs(Set<ResultMyPR> resultMyPRs) {
+		this.resultMyPRs = resultMyPRs;
+	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<ResultCenter> getResultCenter() {
+		return ResultCenter;
+	}
+
+	public void setResultCenter(Set<ResultCenter> resultCenter) {
+		ResultCenter = resultCenter;
+	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<ResultMax> getResultMax() {
+		return ResultMax;
+	}
+
+	public void setResultMax(Set<ResultMax> resultMax) {
+		ResultMax = resultMax;
+	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<ResultPR> getResultPR() {
+		return ResultPR;
+	}
+
+	public void setResultPR(Set<ResultPR> resultPR) {
+		ResultPR = resultPR;
+	}
+
+	public int getRepost() {
+		return repost;
+	}
+
+	public void setRepost(int repost) {
+		this.repost = repost;
+	}
+
+	public int getComment() {
+		return comment;
+	}
+
+	public void setComment(int comment) {
+		this.comment = comment;
 	}
 
 }

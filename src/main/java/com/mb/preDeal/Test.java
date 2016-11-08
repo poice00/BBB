@@ -19,7 +19,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-
+/**
+ * 合并转发和评论计算出来值
+ * @author ssy
+ *
+ */
 public class Test {
 	public static void main(String[] args) {
 //		double dd = 0.15 / 9830 ; //E表示10为底的指数
