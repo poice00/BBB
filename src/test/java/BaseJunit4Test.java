@@ -1,6 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -196,16 +199,44 @@ public class BaseJunit4Test {
 			rela.add(muid+":"+uid);
 		}
 		System.out.println(rela.size());
-		for (String s : rela) {
-			System.out.println(s);
-			String muid = s.split(":")[0];
-			String uid = s.split(":")[1];
-			Userrelation userrelation = new Userrelation();
-			UserrelationId userrelationId = new UserrelationId();
-			userrelationId.setFromId(uid);
-			userrelationId.setToId(muid);
-			userrelation.setId(userrelationId);
-			userrelationService.save(userrelation);
-		}
+		System.out.println("写入中。。。。");
+	    File file = new File("data/follower");
+	    FileWriter fw = null;
+        BufferedWriter writer = null;
+        try {
+            fw = new FileWriter(file);
+            writer = new BufferedWriter(fw);
+            for (String s : rela) {
+            	String muid = s.split(":")[0];
+    			String uid = s.split(":")[1];
+          	    writer.write(muid+"	"+uid);
+          	    writer.newLine();
+            }
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                writer.close();
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("写入完毕。。。。");
+			
+//		for (String s : rela) {
+//			System.out.println(s);
+//			String muid = s.split(":")[0];
+//			String uid = s.split(":")[1];
+//			Userrelation userrelation = new Userrelation();
+//			UserrelationId userrelationId = new UserrelationId();
+//			userrelationId.setFromId(uid);
+//			userrelationId.setToId(muid);
+//			userrelation.setId(userrelationId);
+//			userrelationService.save(userrelation);
+//		}
 	}
 }
