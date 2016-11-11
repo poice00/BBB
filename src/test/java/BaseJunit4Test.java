@@ -3,7 +3,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -14,12 +17,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.mb.domain.Commentrelation;
 import com.mb.domain.Influence;
+import com.mb.domain.Repostrelation;
 import com.mb.domain.ResultCenter;
 import com.mb.domain.ResultMax;
 import com.mb.domain.ResultMyPR;
 import com.mb.domain.ResultPR;
 import com.mb.domain.User;
+import com.mb.domain.Userrelation;
+import com.mb.domain.UserrelationId;
 import com.mb.service.BlogService;
 import com.mb.service.CommentrelationService;
 import com.mb.service.InfluenceService;
@@ -29,6 +36,7 @@ import com.mb.service.ResultMaxService;
 import com.mb.service.ResultMyPRService;
 import com.mb.service.ResultPRService;
 import com.mb.service.UserService;
+import com.mb.service.UserrelationService;
 //import sun.net.www.protocol.gopher.GopherClient;
 
 /**
@@ -47,6 +55,8 @@ public class BaseJunit4Test {
 	
 	@Resource
 	private RepostrelationService repostrelationService;
+	@Resource
+	private UserrelationService userrelationService;
 	@Resource
 	private UserService userService;
 	@Resource
@@ -168,5 +178,34 @@ public class BaseJunit4Test {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	@Test
+	public void followrelation() throws Exception{
+		List<Repostrelation> repostrelationList = repostrelationService.findAll();
+		List<Commentrelation> CommentrelationList = commentrelationService.findAll();
+		Set<String> rela = new HashSet<>();
+		for (Commentrelation commentrelation : CommentrelationList) {
+			String muid = commentrelation.getMuid();
+			String uid = commentrelation.getUid();
+			rela.add(muid+":"+uid);
+			
+		}
+		for (Repostrelation repostrelation : repostrelationList) {
+			String muid = repostrelation.getMuid();
+			String uid = repostrelation.getId().getUid();
+			rela.add(muid+":"+uid);
+		}
+		System.out.println(rela.size());
+		for (String s : rela) {
+			System.out.println(s);
+			String muid = s.split(":")[0];
+			String uid = s.split(":")[1];
+			Userrelation userrelation = new Userrelation();
+			UserrelationId userrelationId = new UserrelationId();
+			userrelationId.setFromId(uid);
+			userrelationId.setToId(muid);
+			userrelation.setId(userrelationId);
+			userrelationService.save(userrelation);
+		}
 	}
 }
