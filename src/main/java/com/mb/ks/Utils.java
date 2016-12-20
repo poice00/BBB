@@ -1,8 +1,11 @@
 package com.mb.ks;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,7 +34,8 @@ public class Utils {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String str= null;
 			while((str=br.readLine())!=null){
-				sets.add(str);
+				sets.add(str.split("\t")[0]);
+				sets.add(str.split("\t")[1]);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -57,4 +61,30 @@ public class Utils {
 		System.out.println("边: " + lists.size());
 		return lists;
 	}
+	public static void writerresultTo(String path, String str) {
+		System.out.println("写入中。。。。");
+	    File file = new File(path);
+	    FileWriter fw = null;
+        BufferedWriter writer = null;
+        try {
+            fw = new FileWriter(file,true);
+            writer = new BufferedWriter(fw);
+        	writer.write(str);
+        	writer.newLine();
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                writer.close();
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("写入完毕。。。。");
+    }
+		
 }

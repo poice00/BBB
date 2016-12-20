@@ -35,11 +35,13 @@ public class CenterDistA {
 		String path = "data/repost.txt";
 		String path2 = "data/comment.txt";
 		String path3 = "data/user.txt";
+		String follower = "data/follower";//关注
 		List<String> userList = readData(path3);
-		Map<String, String> maps1 = readData(path,userList);
-		Map<String, String> maps2 = readData(path2,userList);
-		Map<String, String> maps = merge(maps1,maps2);
-		writerTo("result/centerDist_result2",maps);
+//		Map<String, String> maps1 = readData(path,userList);
+//		Map<String, String> maps2 = readData(path2,userList);
+		Map<String, String> maps = readData(follower,userList);
+//		Map<String, String> maps = merge(follower,maps2);
+		writerTo("result/KS_RELATED/centerDist",maps);
 	}
 	public static List<String> readData(String path) {
 		List<String> dataList = new ArrayList<>();
@@ -96,7 +98,7 @@ public class CenterDistA {
         });
         int k =0 ;
         for (int i = resultMaps.size()-1; i>0; i--) {
-        	if(k==100) break;
+//        	if(k==100) break;
         	double result = (double)list.get(i).getValue()/(userList.size()-1);
         	resultMaps2.put(list.get(i).getKey(), Util.change(result));
         	k++;

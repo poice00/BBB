@@ -31,13 +31,15 @@ public class MaxDegreeA {
 		//sina #西安身边事#
 		String path = "data/repost.txt";
 		String path2 = "data/comment.txt";
-		Map<String, Integer> maps1 = readData(path);
+		String follower = "data/follower";//关注
+//		Map<String, Integer> maps1 = readData(path);
 //		print(maps1);
-		Map<String, Integer> maps2 = readData(path2);
+//		Map<String, Integer> maps2 = readData(path2);
 //		print(maps2);
-		Map<String, Integer> maps = merge(maps1,maps2);
+//		Map<String, Integer> maps = merge(maps1,maps2);
 //		print(maps);
-		writerTo("result/maxDegree_result",maps);
+		Map<String, Integer> maps = readData(follower);
+		writerTo("result/KS_RELATED/maxDegree",maps);
 	}
 	private static Map<String, Integer> merge(Map<String, Integer> maps1, Map<String, Integer> maps2) {
 		Map<String, Integer> resultMaps = new LinkedHashMap<>();
@@ -142,7 +144,6 @@ public class MaxDegreeA {
         });
         int k =0 ;
         for (int i = resultMaps.size()-1; i>0; i--) {
-        	if(k==100) break;
         	resultMaps2.put(list.get(i).getKey(), list.get(i).getValue());
         	k++;
 		}
