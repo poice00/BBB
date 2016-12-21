@@ -39,7 +39,7 @@ public class CenterDistA {
 		List<String> userList = readData(path3);
 //		Map<String, String> maps1 = readData(path,userList);
 //		Map<String, String> maps2 = readData(path2,userList);
-		Map<String, String> maps = readData(follower,userList);
+		Map<String, String> maps = readData(path,userList);
 //		Map<String, String> maps = merge(follower,maps2);
 		writerTo("result/KS_RELATED/centerDist",maps);
 	}
