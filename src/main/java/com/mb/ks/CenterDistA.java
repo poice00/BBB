@@ -39,9 +39,9 @@ public class CenterDistA {
 		List<String> userList = readData(path3);
 //		Map<String, String> maps1 = readData(path,userList);
 //		Map<String, String> maps2 = readData(path2,userList);
-		Map<String, String> maps = readData(path,userList);
+		Map<String, String> maps = readData(follower,userList);
 //		Map<String, String> maps = merge(follower,maps2);
-		writerTo("result/KS_RELATED/centerDist",maps);
+		writerTo("result/KS_RELATED/centerDist0",maps);
 	}
 	public static List<String> readData(String path) {
 		List<String> dataList = new ArrayList<>();
@@ -114,9 +114,14 @@ public class CenterDistA {
 			List<String> tmplist = new ArrayList<>();
 			for (int i = 0; i < dataList.size(); i++) {
 				String []s = dataList.get(i).split("	");
-				if(user.equals(s[1])&&!tList.contains(s[0])){
+				if(!tList.contains(s[0])){
+					if(user.equals(s[1])){
 					count +=index;
 					tmplist.add(s[0]);
+					}else if(user.equals(s[0])){
+						count +=index;
+						tmplist.add(s[1]);
+					}
 				}
 			}
 			if (tmplist!=null) {

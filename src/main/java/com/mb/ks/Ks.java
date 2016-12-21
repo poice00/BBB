@@ -45,7 +45,7 @@ public class Ks {
 				degs = getDegree(edges,nodes);
 				boolean flag = true;
 				for (String node : degs.keySet()) {
-					if(degs.get(node)==index) flag = false;
+					if(degs.get(node)<=index) flag = false;
 				}
 				if(flag){
 //					print(degs);
@@ -54,7 +54,8 @@ public class Ks {
 			}
 //			print(degs);
 //			System.out.println(index + "-shell: " + renodes.toString());
-			Utils.writerresultTo("result/KS_RELATED/ks", index + "-shell: " + renodes.toString());
+			Utils.writerresultTo("result/KS_RELATED/ks1", index + "-shell: " + renodes.toString());
+			System.out.println(index + "-shell: " + renodes.size());
 			index ++;
 			System.out.println("===========index:======================= "+index);
 		}

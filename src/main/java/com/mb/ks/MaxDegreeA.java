@@ -121,11 +121,12 @@ public class MaxDegreeA {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String str= null;
 			while((str=br.readLine())!=null){
-				String []s = str.split("	");
-				if(null == resultMaps.get(s[1]))
-					resultMaps.put(s[1], 1);
-				else 
-					resultMaps.put(s[1], resultMaps.get(s[1])+1);
+				String from = str.split("\t")[0];
+				String to = str.split("\t")[1];
+				if(resultMaps.get(from)==null) resultMaps.put(from, 1);
+				else resultMaps.put(from, resultMaps.get(from)+1);
+				if(resultMaps.get(to)==null) resultMaps.put(to, 1);
+				else resultMaps.put(to, resultMaps.get(to)+1);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
