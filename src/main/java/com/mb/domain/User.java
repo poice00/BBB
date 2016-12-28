@@ -24,9 +24,12 @@ public class User implements java.io.Serializable {
 	private int mblogNum;
 	private int repost;
 	private int comment;
+	private int zanNum;
 	private String mbrank;
 	private String state;
 	private String name;
+	private String selfInf;
+	private String Inf;
 	private Set<Blog> blogs = new HashSet<Blog>();
 	private Set<ResultMyPR> resultMyPRs=new HashSet<ResultMyPR>();
 	private Set<ResultCenter> ResultCenter=new HashSet<ResultCenter>();
@@ -172,6 +175,30 @@ public class User implements java.io.Serializable {
 
 	public void setComment(int comment) {
 		this.comment = comment;
+	}
+
+	public String getSelfInf() {
+		return selfInf;
+	}
+
+	public void setSelfInf(String selfInf) {
+		this.selfInf = selfInf;
+	}
+
+	public String getInf() {
+		return Inf;
+	}
+
+	public void setInf(String inf) {
+		Inf = inf;
+	}
+
+	public int getZanNum() {
+		return zanNum;
+	}
+
+	public void setZanNum(int zanNum) {
+		this.zanNum = zanNum;
 	}
 
 }

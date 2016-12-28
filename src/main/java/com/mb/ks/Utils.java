@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Utils {
@@ -86,5 +87,33 @@ public class Utils {
         }
         System.out.println("写入完毕。。。。");
     }
+	public static void writerresultTo(String path, Map<String, Float> mddresult) {
+		System.out.println("写入中。。。。");
+	    File file = new File(path);
+	    FileWriter fw = null;
+        BufferedWriter writer = null;
+        try {
+            fw = new FileWriter(file);
+            writer = new BufferedWriter(fw);
+            for (String key : mddresult.keySet()) {
+            	writer.write(key+ "\t" + mddresult.get(key));
+            	writer.newLine();
+			}
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                writer.close();
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("写入完毕。。。。");
+		
+	}
 		
 }

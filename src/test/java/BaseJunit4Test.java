@@ -20,6 +20,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.mb.domain.Blog;
 import com.mb.domain.Commentrelation;
 import com.mb.domain.Influence;
 import com.mb.domain.Repostrelation;
@@ -83,6 +84,51 @@ public class BaseJunit4Test {
 		System.out.println(sf);
 		
 	}
+	@Test
+	public void calczan() throws Exception {
+		List<User> userlist = userService.findAll();
+		for (User user : userlist) {
+			Set<Blog> blogs = user.getBlogs();
+			int zannum = 0 ;
+			for (Blog blog : blogs) {
+				zannum += Integer.parseInt(blog.getAttitudesCount());
+			}
+			user.setZanNum(zannum);
+			userService.update(user);
+			System.out.println("1111");
+		}
+		
+	}
+//	由于当 x=6 的时候该函数已经非常接近 1，而且随着 x 继续增大该值变化 特别小，所以通过归一把 x 控制在[0,6]，因为 sigmoid 函数的值域为[0.5,1)， 2*simoid(x)-1 的值域为[0,1
+	@Test
+	public void calcself() throws Exception {
+		List<User> userlist = userService.findAll();
+		for (User user : userlist) {
+			int mb = user.getMblogNum();
+			int att = user.getAttnum();
+			int fans =user.getFansNum();
+			int zans = user.getZanNum();
+			double a = 0.2 ;//微博
+			double b = 0.2 ;//关注
+			double c = 0.5 ;//粉丝
+			double d = 0.1 ;//赞
+			double self = a*mb+b*att+c*fans+d*zans;
+			user.setSelfInf(String.valueOf(self));
+			userService.update(user);
+			System.out.println("==================");
+		}
+	}
+	@Test
+	public void guiyi() throws Exception {
+		List<User> userlist = userService.findAll();
+		for (User user : userlist) {
+			double self = 2*sigmoid((Double.parseDouble(user.getSelfInf())) * 6.0) - 1 ;
+			user.setSelfInf(String.valueOf(self));
+			userService.update(user);
+			System.out.println("==================");
+		}
+	}
+	
 	@Test
 	public void testRepostrelation() throws Exception{
 //		List<Repostrelation> repostrelationList = repostrelationService.findAll();
@@ -238,5 +284,14 @@ public class BaseJunit4Test {
 //			userrelation.setId(userrelationId);
 //			userrelationService.save(userrelation);
 //		}
+	}
+	/**
+	 * 归一化函数
+	 * @param x
+	 * @return
+	 */
+	public static double sigmoid(double x) {
+		double result =1/(1+Math.pow(Math.E,-x));
+		return result;
 	}
 }
