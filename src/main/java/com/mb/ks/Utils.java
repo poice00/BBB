@@ -8,26 +8,27 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class Utils {
-	public static List<String> readData(String path) {
-		List<String> dataList = new ArrayList<>();
+	public static Map<String, Double> readData(String path) {
+		Map<String, Double> maps = new HashMap<String, Double>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String str= null;
 			while((str=br.readLine())!=null){
-				dataList.add(str);
+				maps.put(str.split("\t")[0],Double.parseDouble(str.split("\t")[1]));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return dataList;
+		return maps;
 	}
 	public static Set<String> getNodes(String path) {
 		Set<String> sets = new HashSet<>();
@@ -114,6 +115,21 @@ public class Utils {
         }
         System.out.println("写入完毕。。。。");
 		
+	}
+	public static List<String> readDataToList(String path) {
+		List<String> userList = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String str= null;
+			while((str=br.readLine())!=null){
+				userList.add(str);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return userList;
 	}
 		
 }
