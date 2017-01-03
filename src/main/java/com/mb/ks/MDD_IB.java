@@ -15,25 +15,27 @@ public class MDD_IB {
 		String follower = "data/follower";//关注
 		String user = "data/user.txt";//用户
 		String MDD = "result/KS_RELATED/MDD";
+		String reactionUser = "result/KS_RELATED/reactionUser";
 		//u的MDD值 乘以 u对邻居的影响因子之和 
 		//1.u自身的属性
 //		Map<String, Double> selfMap =Utils.readData(self);
 		//2.u对邻居节点的影响因子之和
-		Map<String, Double> neibMap = new HashMap<>();
+//		Map<String, Double> neibMap = new HashMap<>();
 //		Set<String> rnodes = Utils.getNodes(repost);
-		List<String> redges = Utils.getEdges(repost);//评论
+//		List<String> redges = Utils.getEdges(repost);//评论
 //		Set<String> cnodes = Utils.getNodes(comment);//转发
-		List<String> cedges = Utils.getEdges(comment);
-		List<String> userList =Utils.readDataToList(user);
+//		List<String> cedges = Utils.getEdges(comment);
+//		List<String> userList =Utils.readDataToList(user);
 		//考虑节点u对其他节点的交互次数
-		for (String u : userList) {
-			//1.计算节点u在转发和评论中与其他节点交互次数
-			System.out.println("================="+ u +"=================");
-			double inf = getInractionInf(u,redges,cedges);
-			neibMap.put(u, inf);
-		}
+//		for (String u : userList) {
+//			//1.计算节点u在转发和评论中与其他节点交互次数
+//			System.out.println("================="+ u +"=================");
+//			double inf = getInractionInf(u,redges,cedges);
+//			neibMap.put(u, inf);
+//		}
+//		Utils.writerDOUBLEresultTo("result/KS_RELATED/reactionUser", neibMap);
+		Map<String, Double> neibMap =Utils.readData(reactionUser);
 		print(neibMap);
-		Utils.writerDOUBLEresultTo("result/KS_RELATED/reactionUser", neibMap);
 		//3.u的MDD值
 //		Map<String, Double> mddMap =Utils.readData(MDD);
 	}
