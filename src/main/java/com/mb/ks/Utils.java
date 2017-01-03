@@ -131,5 +131,33 @@ public class Utils {
 		}
 		return userList;
 	}
+	public static void writerDOUBLEresultTo(String path, Map<String, Double> neibMap) {
+		System.out.println("写入中。。。。");
+	    File file = new File(path);
+	    FileWriter fw = null;
+        BufferedWriter writer = null;
+        try {
+            fw = new FileWriter(file);
+            writer = new BufferedWriter(fw);
+            for (String key : neibMap.keySet()) {
+            	writer.write(key+ "\t" + neibMap.get(key));
+            	writer.newLine();
+			}
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                writer.close();
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("写入完毕。。。。");
+		
+	}
 		
 }
