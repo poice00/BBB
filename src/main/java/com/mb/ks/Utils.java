@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -186,6 +187,14 @@ public class Utils {
         }
         System.out.println("写入完毕。。。。");
 		
+	}
+	public static String change(double dd) {
+		DecimalFormat  df=new DecimalFormat("#.###############");//保留15位小数
+		return df.format(dd).toString();
+	}
+	public static String change(float dd) {
+		DecimalFormat  df=new DecimalFormat("#.###############");//保留15位小数
+		return df.format(dd).toString();
 	}
 		
 }

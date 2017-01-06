@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -186,33 +187,35 @@ public class BaseJunit4Test {
 		String centerDist_result = "result/centerDist_result";
 		String maxDegree_result = "result/maxDegree_result";
 		//ks_result
-		List<String> dataList = readToKS(ks_result);
-		for (String data : dataList) {
-			ResultKS my = new ResultKS();
-			my.setId(data.split("\t")[0]);
-			my.setValue(data.split("\t")[1]);
-			User u = userService.getById(my.getId());
-			my.setName(u.getName());
-			my.setUser(u);
-			resultKSService.save(my);
-		}
-		//result
-//		List<String> dataList = readTo100(result);
+//		List<String> dataList = readToKS(ks_result);
 //		for (String data : dataList) {
-//			ResultMyPR my = new ResultMyPR();
+//			ResultKS my = new ResultKS();
 //			my.setId(data.split("\t")[0]);
 //			my.setValue(data.split("\t")[1]);
 //			User u = userService.getById(my.getId());
 //			my.setName(u.getName());
 //			my.setUser(u);
-//			resultMyPRService.save(my);
+//			resultKSService.save(my);
 //		}
+		//result
+		List<String> dataList = readTo100(result);
+		for (String data : dataList) {
+			ResultMyPR my = new ResultMyPR();
+			my.setId(data.split("\t")[0]);
+			double dd = Double.parseDouble(data.split("\t")[1]);
+			my.setValue(change(dd/1000000000).toString());
+			User u = userService.getById(my.getId());
+			my.setName(u.getName());
+			my.setUser(u);
+			resultMyPRService.save(my);
+		}
 		//ori_result
 //		List<String> dataList = readTo100(ori_result);
 //		for (String data : dataList) {
 //			ResultPR my = new ResultPR();
 //			my.setId(data.split("\t")[0]);
-//			my.setValue(data.split("\t")[1]);
+//			double dd = Double.parseDouble(data.split("\t")[1]);
+//			my.setValue(change(dd/1000).toString());
 //			User u = userService.getById(my.getId());
 //			my.setName(u.getName());
 //			my.setUser(u);
@@ -342,5 +345,13 @@ public class BaseJunit4Test {
 	public static double sigmoid(double x) {
 		double result =1/(1+Math.pow(Math.E,-x));
 		return result;
+	}
+	public static String change(double dd) {
+		DecimalFormat  df=new DecimalFormat("#.###############");//保留15位小数
+		return df.format(dd).toString();
+	}
+	public static String change(float dd) {
+		DecimalFormat  df=new DecimalFormat("#.###############");//保留15位小数
+		return df.format(dd).toString();
 	}
 }
