@@ -54,7 +54,7 @@ public class Ks {
 			}
 //			print(degs);
 //			System.out.println(index + "-shell: " + renodes.toString());
-			Utils.writerresultTo("result/KS_RELATED/ks1", index + "-shell: " + renodes.toString());
+			Utils.writerresultTo("result/KS_RELATED/ks2", index ,renodes);
 			System.out.println(index + "-shell: " + renodes.size());
 			index ++;
 			System.out.println("===========index:======================= "+index);

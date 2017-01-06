@@ -35,6 +35,7 @@ public class User implements java.io.Serializable {
 	private Set<ResultCenter> ResultCenter=new HashSet<ResultCenter>();
 	private Set<ResultMax> ResultMax=new HashSet<ResultMax>();
 	private Set<ResultPR> ResultPR=new HashSet<ResultPR>();
+	private Set<ResultKS> ResultKS=new HashSet<ResultKS>();
 	public User() {
 	}
 
@@ -199,6 +200,14 @@ public class User implements java.io.Serializable {
 
 	public void setZanNum(int zanNum) {
 		this.zanNum = zanNum;
+	}
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<ResultKS> getResultKS() {
+		return ResultKS;
+	}
+
+	public void setResultKS(Set<ResultKS> resultKS) {
+		ResultKS = resultKS;
 	}
 
 }

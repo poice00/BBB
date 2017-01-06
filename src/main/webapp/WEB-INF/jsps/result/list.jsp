@@ -19,10 +19,11 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container">
 	    <ul class="nav nav-pills">
-		  <li role="presentation" ><a href="/BBB/result/list/pr"">pageRank</a></li>
 		  <li role="presentation" ><a href="/BBB/result/list/max">degree</a></li>
 		  <li role="presentation" ><a href="/BBB/result/list/rc">centerDistance</a></li>
-		  <li role="presentation" ><a href="/BBB/result/list/mypr">myPR</a></li>
+		  <li role="presentation" ><a href="/BBB/result/list/ks">KS</a></li>
+		  <li role="presentation" ><a href="/BBB/result/list/pr">MDD</a></li>
+		  <li role="presentation" ><a href="/BBB/result/list/mypr">MDD_IB</a></li>
 		</ul>
 	  </div>
 	</nav>

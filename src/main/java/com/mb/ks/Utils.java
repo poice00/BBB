@@ -159,5 +159,33 @@ public class Utils {
         System.out.println("写入完毕。。。。");
 		
 	}
+	public static void writerresultTo(String path, int index, Set<String> renodes) {
+		System.out.println("写入中。。。。");
+	    File file = new File(path);
+	    FileWriter fw = null;
+        BufferedWriter writer = null;
+        try {
+            fw = new FileWriter(file,true);
+            writer = new BufferedWriter(fw);
+            for (String node : renodes) {
+            	writer.write(node + "\t" + index);
+            	writer.newLine();
+			}
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                writer.close();
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("写入完毕。。。。");
+		
+	}
 		
 }

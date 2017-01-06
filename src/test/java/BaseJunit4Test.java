@@ -25,6 +25,7 @@ import com.mb.domain.Commentrelation;
 import com.mb.domain.Influence;
 import com.mb.domain.Repostrelation;
 import com.mb.domain.ResultCenter;
+import com.mb.domain.ResultKS;
 import com.mb.domain.ResultMax;
 import com.mb.domain.ResultMyPR;
 import com.mb.domain.ResultPR;
@@ -36,6 +37,7 @@ import com.mb.service.CommentrelationService;
 import com.mb.service.InfluenceService;
 import com.mb.service.RepostrelationService;
 import com.mb.service.ResultCenterService;
+import com.mb.service.ResultKSService;
 import com.mb.service.ResultMaxService;
 import com.mb.service.ResultMyPRService;
 import com.mb.service.ResultPRService;
@@ -71,6 +73,8 @@ public class BaseJunit4Test {
 	private ResultMyPRService resultMyPRService;
 	@Resource
 	private ResultPRService resultPRService;
+	@Resource
+	private ResultKSService resultKSService;
 	@Resource
 	private ResultCenterService resultCenterService;
 	@Resource
@@ -147,79 +151,124 @@ public class BaseJunit4Test {
 //			commentrelationService.update(commentrelation);
 //		}
 	}
-	@Test
-	public void update() throws Exception{
-		List<ResultPR> datlist = resultPRService.findAll();
-		for (ResultPR resultPR : datlist) {
-			User u = userService.getById(resultPR.getId());
-			resultPR.setName(u.getName());
-			resultPRService.update(resultPR);
-		}
-		List<ResultCenter> datlist2 = resultCenterService.findAll();
-		for (ResultCenter resultPR : datlist2) {
-			User u = userService.getById(resultPR.getId());
-			resultPR.setName(u.getName());
-			resultCenterService.update(resultPR);
-		}
-		List<ResultMax> datlist3 = resultMaxService.findAll();
-		for (ResultMax resultPR : datlist3) {
-			User u = userService.getById(resultPR.getId());
-			resultPR.setName(u.getName());
-			resultMaxService.update(resultPR);
-		}
-		List<ResultMyPR> datlist4 = resultMyPRService.findAll();
-		for (ResultMyPR resultPR : datlist4) {
-			User u = userService.getById(resultPR.getId());
-			resultPR.setName(u.getName());
-			resultMyPRService.update(resultPR);
-		}
-	}
+//	@Test
+//	public void update() throws Exception{
+//		List<ResultPR> datlist = resultPRService.findAll();
+//		for (ResultPR resultPR : datlist) {
+//			User u = userService.getById(resultPR.getId());
+//			resultPR.setName(u.getName());
+//			resultPRService.update(resultPR);
+//		}
+//		List<ResultCenter> datlist2 = resultCenterService.findAll();
+//		for (ResultCenter resultPR : datlist2) {
+//			User u = userService.getById(resultPR.getId());
+//			resultPR.setName(u.getName());
+//			resultCenterService.update(resultPR);
+//		}
+//		List<ResultMax> datlist3 = resultMaxService.findAll();
+//		for (ResultMax resultPR : datlist3) {
+//			User u = userService.getById(resultPR.getId());
+//			resultPR.setName(u.getName());
+//			resultMaxService.update(resultPR);
+//		}
+//		List<ResultMyPR> datlist4 = resultMyPRService.findAll();
+//		for (ResultMyPR resultPR : datlist4) {
+//			User u = userService.getById(resultPR.getId());
+//			resultPR.setName(u.getName());
+//			resultMyPRService.update(resultPR);
+//		}
+//	}
 	@Test
 	public void testInf() throws Exception{
-		String result = "result/result0.0001";
-		String ori_result = "result/ori_result0.0001";
+		String result = "result/KS_RELATED/MDD_IB";
+		String ori_result = "result/KS_RELATED/MDD";
+		String ks_result = "result/KS_RELATED/ks2";
 		String centerDist_result = "result/centerDist_result";
 		String maxDegree_result = "result/maxDegree_result";
+		//ks_result
+		List<String> dataList = readToKS(ks_result);
+		for (String data : dataList) {
+			ResultKS my = new ResultKS();
+			my.setId(data.split("\t")[0]);
+			my.setValue(data.split("\t")[1]);
+			User u = userService.getById(my.getId());
+			my.setName(u.getName());
+			my.setUser(u);
+			resultKSService.save(my);
+		}
 		//result
-//		List<String> dataList = readTo(result);
+//		List<String> dataList = readTo100(result);
 //		for (String data : dataList) {
 //			ResultMyPR my = new ResultMyPR();
 //			my.setId(data.split("\t")[0]);
 //			my.setValue(data.split("\t")[1]);
+//			User u = userService.getById(my.getId());
+//			my.setName(u.getName());
+//			my.setUser(u);
 //			resultMyPRService.save(my);
 //		}
 		//ori_result
-//		List<String> dataList = readTo(ori_result);
+//		List<String> dataList = readTo100(ori_result);
 //		for (String data : dataList) {
 //			ResultPR my = new ResultPR();
 //			my.setId(data.split("\t")[0]);
 //			my.setValue(data.split("\t")[1]);
+//			User u = userService.getById(my.getId());
+//			my.setName(u.getName());
+//			my.setUser(u);
 //			resultPRService.save(my);
 //		}
 		//centerDist_result
-//		List<String> dataList = readTo(centerDist_result);
+//		List<String> dataList = readTo100(centerDist_result);
 //		for (String data : dataList) {
 //			ResultCenter my = new ResultCenter();
 //			my.setId(data.split("\t")[0]);
 //			my.setValue(data.split("\t")[1]);
+//			User u = userService.getById(my.getId());
+//			my.setName(u.getName());
+//			my.setUser(u);
 //			resultCenterService.save(my);
 //		}
 		//maxDegree_result
-//		List<String> dataList = readTo(maxDegree_result);
+//		List<String> dataList = readTo100(maxDegree_result);
 //		for (String data : dataList) {
 //			ResultMax my = new ResultMax();
 //			my.setId(data.split("\t")[0]);
-//			my.setValue(data.split("\t")[1]);
+//			my.setValue(Integer.parseInt(data.split("\t")[1]));
+//			User u = userService.getById(my.getId());
+//			my.setName(u.getName());
+//			my.setUser(u);
 //			resultMaxService.save(my);
 //		}
 	}
-	private List<String> readTo(String path) {
+	private List<String> readToKS(String ks_result) {
+		List<String> list = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(ks_result));
+			String str= null;
+			while((str=br.readLine())!=null){
+				int ks = Integer.parseInt(str.split("\t")[1]);
+				if(ks>=6){
+					list.add(str);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	private List<String> readTo100(String path) {
 		List<String> list = new ArrayList<>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
 			String str= null;
+			int index = 0 ;
 			while((str=br.readLine())!=null){
+				if(index==100)break;
 				list.add(str);
+				index++;
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

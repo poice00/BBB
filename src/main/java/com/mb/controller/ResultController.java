@@ -27,12 +27,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.mb.domain.Blog;
 import com.mb.domain.PageBean;
 import com.mb.domain.ResultCenter;
+import com.mb.domain.ResultKS;
 import com.mb.domain.ResultMax;
 import com.mb.domain.ResultMyPR;
 import com.mb.domain.ResultPR;
 import com.mb.domain.User;
 import com.mb.service.BlogService;
 import com.mb.service.ResultCenterService;
+import com.mb.service.ResultKSService;
 import com.mb.service.ResultMaxService;
 import com.mb.service.ResultMyPRService;
 import com.mb.service.ResultPRService;
@@ -53,13 +55,23 @@ public class ResultController  {
 	private ResultCenterService resultCenterService;
 	@Resource
 	private ResultMaxService resultMaxService;
+	@Resource
+	private ResultKSService resultKSService;
 		
+	/** 列表 */
+	@RequestMapping("/list/ks")
+	public String ks(Model model,HttpServletRequest httpRequest) throws Exception {
+		List<ResultKS> resultList = resultKSService.getByValue();
+		model.addAttribute("resultList", resultList);
+		model.addAttribute("aname", "KS");
+		return "/result/list";
+	}
 	/** 列表 */
 	@RequestMapping("/list/pr")
 	public String pr(Model model,HttpServletRequest httpRequest) throws Exception {
 		List<ResultPR> resultList = resultPRService.getByValue();
 		model.addAttribute("resultList", resultList);
-		model.addAttribute("aname", "PageRank");
+		model.addAttribute("aname", "MDD");
 		return "/result/list";
 	}
 	/** 列表 */
@@ -83,7 +95,7 @@ public class ResultController  {
 	public String mypr(Model model,HttpServletRequest httpRequest) throws Exception {
 		List<ResultMyPR> resultList = resultMyPRService.getByValue();
 		model.addAttribute("resultList", resultList);
-		model.addAttribute("aname", "MyPR");
+		model.addAttribute("aname", "MDD_IB");
 		return "/result/list";
 	}
 }

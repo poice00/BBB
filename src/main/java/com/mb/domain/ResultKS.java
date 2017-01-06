@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 @Entity
-public class ResultPR {//MDD
+public class ResultKS {//MDD_IB
 	private String id;
 	private String name;
 	private String value;
@@ -38,4 +38,5 @@ public class ResultPR {//MDD
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 }

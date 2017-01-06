@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 @Entity
-public class ResultMyPR {
+public class ResultMyPR {//MDD_IB
 	private String id;
 	private String name;
 	private String value;
