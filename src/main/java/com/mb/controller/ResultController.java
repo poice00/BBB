@@ -95,7 +95,7 @@ public class ResultController  {
 	public String mypr(Model model,HttpServletRequest httpRequest) throws Exception {
 		List<ResultMyPR> resultList = resultMyPRService.getByValue();
 		model.addAttribute("resultList", resultList);
-		model.addAttribute("aname", "MDD_IB");
+		model.addAttribute("aname", "MIB");
 		return "/result/list";
 	}
 }

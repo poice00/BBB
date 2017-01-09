@@ -23,7 +23,7 @@ src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 		  <li role="presentation" ><a href="/BBB/result/list/rc">centerDistance</a></li>
 		  <li role="presentation" ><a href="/BBB/result/list/ks">KS</a></li>
 		  <li role="presentation" ><a href="/BBB/result/list/pr">MDD</a></li>
-		  <li role="presentation" ><a href="/BBB/result/list/mypr">MDD_IB</a></li>
+		  <li role="presentation" ><a href="/BBB/result/list/mypr">MIB</a></li>
 		</ul>
 	  </div>
 	</nav>

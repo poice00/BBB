@@ -6,8 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
@@ -119,5 +121,48 @@ public class Utils {
 			e.printStackTrace();
 		}
 		return sets;
+	}
+	public static List<String> gettDatas(String path) {
+		List<String> lists = new ArrayList<>();
+		Map<String, Integer> maps = new HashMap<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String str= null;
+			while((str=br.readLine())!=null){
+				str = str.split("\t")[1] + "\t" + str.split("\t")[0];
+				if(maps.get(str)==null)
+					maps.put(str, 1);
+				else
+					maps.put(str, maps.get(str)+1);
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for (String key : maps.keySet()) {
+			lists.add(key + "\t"+ maps.get(key));
+		}
+		return lists;
+	}
+	public static List<String> readInitial(String path,int index) {
+		List<String> lists = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String str= null;
+			int count = 0 ;
+			while((str=br.readLine())!=null){
+				count ++;
+				if(count<=index)
+					lists.add(str.replace("\t", ""));
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lists;
 	}
 }

@@ -20,7 +20,6 @@ import java.util.logging.SimpleFormatter;
 其邻居节点进行激活。如果节点变为激活节点那么将节点加入到 中。
 	4.重复上述过程直到没有新的未激活节点变为激活节点，传播过程结束。
  */
-@Deprecated
 public class Greedy {
 	public static void main(String[] args) {
 		List<String> datalist = Utils.getListDatas("data/repost.txt");//7115节点 103689
