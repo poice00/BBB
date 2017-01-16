@@ -7,8 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -33,6 +35,7 @@ import com.mb.domain.ResultPR;
 import com.mb.domain.User;
 import com.mb.domain.Userrelation;
 import com.mb.domain.UserrelationId;
+import com.mb.ks.Utils;
 import com.mb.service.BlogService;
 import com.mb.service.CommentrelationService;
 import com.mb.service.InfluenceService;
@@ -104,6 +107,45 @@ public class BaseJunit4Test {
 		}
 		
 	}
+
+	private static int getInractionInf(User user, List<String> edges) {
+		int index = 0 ;//
+		Map<String, Integer> mapr = new HashMap<>();
+		for (String redge : edges) {
+			if(redge.split("\t")[0].equals(user.getId())){
+				index ++;
+			}
+		}
+		index+=user.getMblogNum();
+		return index;
+	}
+	@Test
+	public void calcAInf() throws Exception {
+		String user = "data/user.txt";//用户
+		String repostAndcomment = "data/repostAndcomment";
+		List<User> userlist = userService.findAll(); 
+		List<String> edges = Utils.getEdges(repostAndcomment);//评论
+		Map<String, Double> maps = new HashMap<>();
+		double resut = 0.0 ;
+		double max = 0 ;
+		for (User u : userlist) {
+			//1.计算节点u在转发和评论中与其他节点交互次数
+			System.out.println("================="+ u +"=================");
+			double inf = getInractionInf(u,edges);
+			u.setInf(String.valueOf(inf));
+			if(inf>max) max = inf;
+			userService.update(u);
+		}
+		for (User u : userlist) {
+			//1.计算节点u在转发和评论中与其他节点交互次数
+			System.out.println("================="+ u +"=================");
+			double inf = Double.parseDouble(u.getInf())/max ;
+			u.setInf(change(inf).toString());
+			userService.update(u);
+		}
+		
+	}
+	
 //	由于当 x=6 的时候该函数已经非常接近 1，而且随着 x 继续增大该值变化 特别小，所以通过归一把 x 控制在[0,6]，因为 sigmoid 函数的值域为[0.5,1)， 2*simoid(x)-1 的值域为[0,1
 	@Test
 	public void calcself() throws Exception {

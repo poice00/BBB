@@ -671,6 +671,43 @@ public class Util {
         }
         System.out.println("写入完毕。。。。");
 	}
+	public static List<String> readperDealUsers(String path) {
+		List<String> lists = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String str= null;
+			while((str=br.readLine())!=null){
+				if(Double.parseDouble(str.split("\t")[1])!=0)
+				lists.add(str.split("\t")[0]);
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lists;
+	}
+	public static List<String> readperDealUsers(String path, int num) {
+		List<String> lists = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String str= null;
+			int a = 0 ;
+			while((str=br.readLine())!=null){
+				if(a < num){
+					lists.add(str.split("\t")[0]);
+					a++;
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lists;
+	}
 	
 	
 }

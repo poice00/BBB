@@ -22,8 +22,8 @@ import java.util.logging.SimpleFormatter;
  */
 public class Greedy {
 	public static void main(String[] args) {
-		List<String> datalist = Utils.getListDatas("data/repost.txt");//7115节点 103689
-		Set<String> nodeSet = Utils.getListNodes("data/repost.txt");
+		List<String> datalist = Utils.getListDatas("data/follower");//7115节点 103689
+		Set<String> nodeSet = Utils.getListNodes("data/follower");
 		int k = 50 ; //种子节点k
 		Set<String> seedsSet = new TreeSet<String>();//种子节点的集合
 		Set<String> Nodes = null;//

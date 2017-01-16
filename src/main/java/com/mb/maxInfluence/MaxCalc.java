@@ -13,7 +13,8 @@ public class MaxCalc {
 			String mdd = "max/mdd";
 			String mib = "max/mib";
 			String MB = "max/MB";
-			List<String> inits = Utils.readInitial(MB,i);
+			String smc = "result/KS_RELATED/SMC";
+			List<String> inits = Utils.readInitial(smc,i);
 			int size = getActiveNodes(inits,countlist);
 			System.out.println(i + " : " + size);
 		}
