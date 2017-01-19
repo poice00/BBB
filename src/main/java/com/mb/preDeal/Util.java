@@ -708,6 +708,22 @@ public class Util {
 		}
 		return lists;
 	}
+	public static List<String> readperUsers(String path) {
+		List<String> lists = new ArrayList<>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			String str= null;
+			while((str=br.readLine())!=null){
+				lists.add(str);
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lists;
+	}
 	
 	
 }
