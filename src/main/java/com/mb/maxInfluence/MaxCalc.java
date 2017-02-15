@@ -6,7 +6,7 @@ import java.util.List;
 public class MaxCalc {
 	public static void main(String[] args) {
 		List<String> countlist = preDeal();
-		for(int i = 2;i<=20;i +=2){
+		for(int i = 1;i<=20;i ++){
 			String degee = "max/degree";
 			String cent = "max/cent";
 			String ks = "max/ks";
@@ -16,7 +16,7 @@ public class MaxCalc {
 			String MBcelf = "max/MBCELF";
 			String greedy = "max/greedy";
 			String smc = "result/KS_RELATED/SMC";
-			List<String> inits = Utils.readInitial(MBcelf,i);
+			List<String> inits = Utils.readInitial(cent,i);
 			int size = getActiveNodes(inits,countlist);
 			System.out.println(i + " : " + size);
 		}

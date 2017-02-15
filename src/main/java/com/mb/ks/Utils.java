@@ -64,6 +64,33 @@ public class Utils {
 		System.out.println("边: " + lists.size());
 		return lists;
 	}
+	public static void writerresultTo(String path, List<String> str) {
+		System.out.println("写入中。。。。");
+	    File file = new File(path);
+	    FileWriter fw = null;
+        BufferedWriter writer = null;
+        try {
+            fw = new FileWriter(file);
+            writer = new BufferedWriter(fw);
+            for (String key : str) {
+            	writer.write(key);
+            	writer.newLine();
+			}
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                writer.close();
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("写入完毕。。。。");
+    }
 	public static void writerresultTo(String path, String str) {
 		System.out.println("写入中。。。。");
 	    File file = new File(path);
